@@ -22,7 +22,7 @@ Vertex GraphicsScene::addVertex(const QPointF& position) {
     Vertex vertex = boost::add_vertex(graph_);
     
     // Create a rectangle for the vertex object
-    QRectF rect(-5, -5, 10, 10); // Adjust the rectangle size as needed
+    QRectF rect(-10, -10, 20, 20); // Adjust the rectangle size as needed
 
     // Instantiate VertexObject
     VertexObject *vertexObject = new VertexObject(rect, uuid, vertex);

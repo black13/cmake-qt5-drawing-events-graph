@@ -2,6 +2,8 @@
 #define VERTEXOBJECT_H
 
 #include <QGraphicsObject>
+#include <QBrush>
+#include <QPainter>
 #include <QUuid>
 #include <boost/graph/adjacency_list.hpp>
 
@@ -24,11 +26,14 @@ signals:
 
 protected:
     QVariant itemChange(GraphicsItemChange change, const QVariant &value) override;
+    void hoverEnterEvent(QGraphicsSceneHoverEvent *event) override;
+    void hoverLeaveEvent(QGraphicsSceneHoverEvent *event) override;
 
 private:
     QRectF rect_;
     QUuid uuid_;
     Vertex vertex_;
+    QBrush brush_;
 };
 
 #endif // VERTEXOBJECT_H
