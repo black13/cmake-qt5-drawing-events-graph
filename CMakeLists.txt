@@ -32,6 +32,7 @@ set(SOURCES
     EdgeObject.h
     VertexObject.cpp
     VertexObject.h
+    debug.h
 )
 
 # Define the executable

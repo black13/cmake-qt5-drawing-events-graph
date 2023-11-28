@@ -11,6 +11,7 @@
 #include <boost/uuid/uuid_io.hpp>
 
 #include "VertexObject.h"
+#include "EdgeObject.h"
 #include "GraphicsScene.h"
 
 GraphicsScene::GraphicsScene(QObject *parent) : QGraphicsScene(parent) {
@@ -46,7 +47,6 @@ Vertex GraphicsScene::addVertex(const QPointF& position) {
     return vertex;
 }
 
-
 void GraphicsScene::addEdge(Vertex v1, Vertex v2) {
     if (!vertexItems_.contains(v1) || !vertexItems_.contains(v2)) {
         return; // Vertex not found
@@ -54,18 +54,19 @@ void GraphicsScene::addEdge(Vertex v1, Vertex v2) {
 
     QPointF pos1 = vertexItems_.value(v1)->pos();
     QPointF pos2 = vertexItems_.value(v2)->pos();
-    qDebug() << "pos1:" << pos1 << " pos2:" << pos2;
 
-    QGraphicsLineItem *lineItem = new QGraphicsLineItem(QLineF(pos1, pos2));
-    addItem(lineItem);
     Edge edge;
     bool added;
     boost::tie(edge, added) = boost::add_edge(v1, v2, graph_);
-    if (added) {
-        edgeItems_.insert(edge, lineItem);
-    } else {
-        delete lineItem; // Make sure lineItem is a pointer to QGraphicsLineItem
+    if (!added) {
+        return; // Edge already exists or couldn't be added
     }
+
+    QUuid uuid = QUuid::createUuid(); // Create a unique identifier for the edge
+
+    EdgeObject *edgeItem = new EdgeObject(QLineF(pos1, pos2), uuid, edge);
+    addItem(edgeItem);
+    edgeItems_.insert(edge, edgeItem);
 }
 
 void GraphicsScene::updateEdges() {

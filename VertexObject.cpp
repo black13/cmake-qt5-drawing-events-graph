@@ -1,7 +1,8 @@
-#include "VertexObject.h"
+
 #include <QPainter>
 #include <QGraphicsSceneHoverEvent>
-
+#include <QDebug>
+#include "VertexObject.h"
 VertexObject::VertexObject(const QRectF &rect, const QUuid& uuid, const Vertex& vertex, QGraphicsItem *parent)
     : QGraphicsObject(parent), rect_(rect), uuid_(uuid), vertex_(vertex), brush_(Qt::white) {
     setFlags(ItemIsMovable | ItemSendsGeometryChanges);

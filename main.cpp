@@ -1,5 +1,6 @@
 #include <QApplication>
 #include <QGraphicsView>
+#include <QDebug>
 #include "GraphicsScene.h"
 
 int main(int argc, char *argv[]) {
@@ -16,7 +17,7 @@ int main(int argc, char *argv[]) {
     // Add a large graph to the scene
     // int nodeCount = 2; // Example node count
     // int edgesPerNode = 1; // Example edges per node
-    scene.addLargeGraph(5, 2);
+    scene.addLargeGraph(7, 2);
 
     // Add two vertices
     //Vertex v1 = scene.addVertex(QPointF(100, 100));
