@@ -13,6 +13,7 @@ typedef boost::graph_traits<Graph>::edge_descriptor Edge;
 
 // Forward declaration of the VertexObject class
 class VertexObject;
+class EdgeObject;
 
 class GraphicsScene : public QGraphicsScene {
     Q_OBJECT
@@ -34,7 +35,7 @@ private slots:
 private:
     Graph graph_;
     QMap<Vertex, VertexObject*> vertexItems_;
-    QMap<Edge, QGraphicsLineItem*> edgeItems_;
+    QMap<Edge, EdgeObject*> edgeItems_;
     QMap<QGraphicsItem*, QUuid> itemUuids_;
 };
 
